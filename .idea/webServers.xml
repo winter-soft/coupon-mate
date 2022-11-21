@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="356d56cc-cbae-444f-9b2a-64321b4c211e" name="eatda.wintersoft.kr">
+        <fileTransfer rootFolder="/var/www/html/couponmate" accessType="SFTP" host="121.124.124.8" port="22" sshConfigId="21316d61-4082-4724-850d-a7c65d26ee7f" sshConfig="itkoo@121.124.124.8:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
