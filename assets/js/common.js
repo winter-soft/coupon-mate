@@ -53,6 +53,9 @@ function callCommonApi(url, header, method, data) {
         async: false,
         success: function (resultData) {
             result = resultData;
+        },
+        fail: function (resultData) {
+            result = resultData;
         }
     });
 
@@ -71,6 +74,9 @@ function callFormTypeCommonApi(url, header, method, data) {
         method: method,
         async: false,
         success: function (resultData) {
+            result = resultData;
+        },
+        fail: function (resultData) {
             result = resultData;
         }
     });
@@ -145,13 +151,18 @@ function getFormData($form) {
 }
 
 function checkLogin() {
-    const currentPath = window.location.pathname;
-    const isLoginPage = currentPath.includes("login") || currentPath.includes("loading");
-    if (!isLoginPage && !getToken()) {
+    if (!isLoginPage() && !getToken()) {
         location.href = LOGIN_URL;
     } else {
-        userInfo = callUserInfoApi();
+        if (!isLoginPage()) {
+            userInfo = callUserInfoApi();
+        }
     }
+}
+
+function isLoginPage() {
+    const currentPath = window.location.pathname;
+    return currentPath.includes("login") || currentPath.includes("loading");
 }
 
 function callUserInfoApi() {
@@ -190,4 +201,36 @@ function removeEatdaToken() {
 function logoutWithKakao() {
     removeEatdaToken();
     location.href = `https://kauth.kakao.com/oauth/logout?client_id=${REST_API_KEY}&logout_redirect_uri=${LOGOUT_REDIRECT_URL}`;
+}
+
+function logout() {
+    removeEatdaToken();
+    if (!isLoginPage()) {
+        location.href = LOGIN_URL;
+    }
+}
+
+function moveFundingPage(fundingId) {
+    location.href = `http://couponmate.wintersoft.kr/menu/index.php?id=${fundingId}`;
+}
+
+
+function moveItemPage(itemId) {
+    location.href = `http://couponmate.wintersoft.kr/menu/index.php?id=${itemId}`;
+}
+
+var clientKey = 'test_ck_O6BYq7GWPVvN9lbXLbnVNE5vbo1d'
+var tossPayments = TossPayments(clientKey)
+
+var button = document.getElementById('payment-button') // 결제하기 버튼
+
+function payWithToss() {
+    tossPayments.requestPayment('카드', {
+        amount: 20000,
+        orderId: 'Bd3V0mVTtXlrSJqlyIRQ4',
+        orderName: "몽블랑",
+        customerName: '구지뽕',
+        successUrl: `http://couponmate.wintersoft.kr/`,
+        failUrl: 'http://couponmate.wintersoft.kr/',
+    })
 }

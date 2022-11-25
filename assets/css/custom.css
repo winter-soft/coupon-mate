@@ -733,12 +733,6 @@ button:focus {
     text-decoration: underline;
 }
 
-.f-card-description {
-    top: -6vh;
-    position: relative;
-    right: 10px;
-}
-
 .i-title {
     font-weight: 900;
     font-size: 1.3rem;
@@ -775,6 +769,7 @@ button:focus {
 
 .friend-list div {
     width: 70px;
+    height: 70px;
     display: inline-block !important;
     margin-right: 10px;
     text-align: center;
@@ -890,4 +885,11 @@ button:focus {
 
 .c-modal .option.active {
     color: var(--color-primary-text);
+}
+
+.f-card-description {
+    display: inline-block;
+    position: relative;
+    top: -6vh;
+    right: 20px;
 }

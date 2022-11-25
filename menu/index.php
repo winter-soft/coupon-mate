@@ -5,18 +5,18 @@ include "../template/header.php"
 ?>
 <div class="detail-box">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStUq9NCVQxz92vWEfUvOGGSiCT0-bMf9GK8I_Ans3sA9zM03UCWSIALMeqf0xA8THEDPE&usqp=CAU"
-         alt="">
+         alt="" id="menuImg">
     <div class="gauge">
         <div class="active w-50"></div>
-        <span>109,000원</span>
+        <span id="remainPrice">109,000원</span>
     </div>
 </div>
 <div class="mt-2">
-    <p class="sm-txt font-weight-bold text-primary m-0">구지원님을 위한 선물
+    <p class="sm-txt font-weight-bold text-primary m-0" id="title">
         <ion-icon name="heart-outline" class="text-primary float-right lg-txt"></ion-icon>
     </p>
-    <p class="lg-txt font-weight-bold txt-black mb-1">다이슨 드라이기 슈퍼소닉 HD03</p>
-    <p class="m-0 font-weight-bold">499,000원</p>
+    <p class="lg-txt font-weight-bold txt-black mb-1" id="name">다이슨 드라이기 슈퍼소닉 HD03</p>
+    <p class="m-0 font-weight-bold" id="price">499,000원</p>
 </div>
 <hr>
 <div class="mt-2">
@@ -37,7 +37,7 @@ include "../template/header.php"
 	?>
 </div>
 <hr>
-<div>
+<div id="description">
     플라이어웨이 노즐
     매끄러운 스타일링의 마무리를 위한 이상적인 노즐입니다.
     잔머리를 긴 모발 아래로 감춰주어, 바람만으로 매끄럽고
@@ -61,6 +61,14 @@ include "../template/header.php"
 <!--</div>-->
 <button class="bottom-btn" id="payment-button" onclick="payWithToss()">선물 펀딩 참여하기</button>
 <?php
-$_GET['jsFile'] = [];
+$_GET['jsFile'] = ["api", "menu"];
 include "../template/order_footer.php";
 ?>
+<script>
+    let fundingId = <?php echo $_GET["id"] ?>;
+    $(document).ready(function () {
+        setFunding(fundingId);
+        // setFundingList();
+    });
+
+</script>
